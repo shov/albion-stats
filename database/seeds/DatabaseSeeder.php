@@ -11,6 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        if('true' === env('SEED', null)) {
+            $this->call(TierSeeder::class);
+            $this->call(QualitySeeder::class);
+            $this->call(EnchantmentSeeder::class);
+            $this->call(ItemSeeder::class);
+
+            $this->call(PriceVariationSeeder::class);
+            $this->call(StoreSeeder::class);
+        }
     }
 }
