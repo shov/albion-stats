@@ -11,7 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if('true' === env('SEED', null)) {
+        $seed = env('SEED', null);
+        if(true === $seed) {
             $this->call(TierSeeder::class);
             $this->call(QualitySeeder::class);
             $this->call(EnchantmentSeeder::class);

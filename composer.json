@@ -8,13 +8,14 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.4.0",
+        "cebe/markdown": "~1.2.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "cebe/markdown": "~1.2.0"
+        "shov/fillable": "^0.3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

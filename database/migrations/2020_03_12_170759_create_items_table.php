@@ -17,8 +17,8 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('name')->unique();
 
-            $table->integer('tier_id')->index();
-            $table->integer('enchantment_id')->index();
+            $table->integer('tier_id')->nullable()->index();
+            $table->integer('enchantment_id')->nullable()->index();
 
             $table->json('details'); //tmp for market path, nice-name and other details
             $table->timestamps();

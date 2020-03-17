@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6558f74828bca9ebecac73d90cea4b1a",
+    "content-hash": "b9204e348845cfa65bc77cc72986693f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -57,6 +57,66 @@
                 "stack"
             ],
             "time": "2019-12-24T22:41:47+00:00"
+        },
+        {
+            "name": "cebe/markdown",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cebe/markdown.git",
+                "reference": "9bac5e971dd391e2802dca5400bbeacbaea9eb86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cebe/markdown/zipball/9bac5e971dd391e2802dca5400bbeacbaea9eb86",
+                "reference": "9bac5e971dd391e2802dca5400bbeacbaea9eb86",
+                "shasum": ""
+            },
+            "require": {
+                "lib-pcre": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "cebe/indent": "*",
+                "facebook/xhprof": "*@dev",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "bin": [
+                "bin/markdown"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "cebe\\markdown\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carsten Brandt",
+                    "email": "mail@cebe.cc",
+                    "homepage": "http://cebe.cc/",
+                    "role": "Creator"
+                }
+            ],
+            "description": "A super fast, highly extensible markdown parser for PHP",
+            "homepage": "https://github.com/cebe/markdown#readme",
+            "keywords": [
+                "extensible",
+                "fast",
+                "gfm",
+                "markdown",
+                "markdown-extra"
+            ],
+            "time": "2018-03-26T11:24:36+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1948,6 +2008,53 @@
                 "uuid"
             ],
             "time": "2020-02-21T04:36:14+00:00"
+        },
+        {
+            "name": "shov/fillable",
+            "version": "v0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shov/fillable.git",
+                "reference": "b8cdfb280c539d5e0204d7ef83b85685751b8c93"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shov/fillable/zipball/b8cdfb280c539d5e0204d7ef83b85685751b8c93",
+                "reference": "b8cdfb280c539d5e0204d7ef83b85685751b8c93",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shov\\Helpers\\Mixins\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandr Shevchenko",
+                    "email": "ls.shov@gmail.com"
+                }
+            ],
+            "description": "Fillable trait is mixin makes any object (usually DTO) fillable for several easy ways",
+            "keywords": [
+                "Data Transfer Object",
+                "fill dto",
+                "fillable",
+                "laravel",
+                "php",
+                "presenter"
+            ],
+            "time": "2018-05-16T08:12:14+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

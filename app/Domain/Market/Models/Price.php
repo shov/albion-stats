@@ -15,6 +15,10 @@ class Price extends Model
 {
     protected $table = 'prices';
 
+    protected $dates = [
+        'registered_at',
+    ];
+
     public function item() {
         return $this->belongsTo(Item::class);
     }
