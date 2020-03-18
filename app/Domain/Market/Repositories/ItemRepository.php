@@ -84,7 +84,7 @@ class ItemRepository
 
         $parseExpression = [];
         preg_match_all(
-            '/^(T(?<tier>[12345678]{1}))?(?<itemName>[A-Z_]+)(\@(?<enchantment>[123]{1}))?$/',
+            '/^(T(?<tier>[12345678]{1})_)?(?<itemName>[A-Z_]+)(\@(?<enchantment>[123]{1}))?$/',
             $expression,
             $parseExpression
         );
