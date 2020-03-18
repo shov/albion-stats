@@ -41,7 +41,7 @@ class ItemRepository
             ->newInstance();
 
         $item->name = $name;
-        $item->details = $details;
+        $item->details = json_encode($details);
 
         if (!is_null($tier)) {
             $item->tier()->associate($tier);
@@ -84,7 +84,7 @@ class ItemRepository
 
         $parseExpression = [];
         preg_match_all(
-            '/^(T(?<tier>[12345678]{1})_)?(?<itemName>[A-Z_]+)(\@(?<enchantment>[123]{1}))?$/',
+            '/^(T(?<tier>[12345678]{1})_)?(?<itemName>[A-Z_0-9]+)(\@(?<enchantment>[123]{1}))?$/',
             $expression,
             $parseExpression
         );
@@ -110,6 +110,6 @@ class ItemRepository
             $enchantment = $enchantmentRepo->getByName($parseExpression['enchantment'][0]);
         }
 
-        $this->create($parseExpression['itemName'][0], compact('niceName', 'sourceId'), $tier, $enchantment);
+        $this->create($expression, compact('niceName', 'sourceId'), $tier, $enchantment);
     }
 }
