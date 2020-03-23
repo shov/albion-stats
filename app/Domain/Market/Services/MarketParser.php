@@ -5,10 +5,8 @@ namespace App\Domain\Market\Services;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Pool;
-use function GuzzleHttp\Promise\settle;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use http\Message;
 
 
 /**
@@ -18,15 +16,19 @@ use http\Message;
 class MarketParser
 {
     const PRICE_BASE_URL = 'https://www.albion-online-data.com/api/v2/stats/prices/';
+
     protected Client $client;
+    protected MarketPrices $marketPrices;
 
     /**
      * DI
      * @param Client $client
+     * @param MarketPrices $marketPrices
      */
-    public function __construct(Client $client)
+    public function __construct(Client $client, MarketPrices $marketPrices)
     {
         $this->client = $client;
+        $this->marketPrices = $marketPrices;
     }
 
     /**
@@ -53,7 +55,25 @@ class MarketParser
                 $contentStr = $response->getBody()->getContents();
                 $content = json_decode($contentStr);
 
-                //TODO save in DB
+                /*
+                  {
+                    item_id: "T5_HEAD_PLATE_SET1",
+                    city: "3332",
+                    quality: 1,
+                    sell_price_min: 5000,
+                    sell_price_min_date: "2020-03-19T01:22:00",
+                    sell_price_max: 5000,
+                    sell_price_max_date: "2020-03-19T01:22:00",
+                    buy_price_min: 0,
+                    buy_price_min_date: "0001-01-01T00:00:00",
+                    buy_price_max: 0,
+                    buy_price_max_date: "0001-01-01T00:00:00"
+                },
+
+                 */
+
+                //TODO save in DB: loop on $content
+                $this->marketPrices; //put portion ->createFromRaw($piece);
 
                 $externalLogger(['step_progress_bar']);
             },

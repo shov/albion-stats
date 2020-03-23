@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Price
  *
  * @property string $registered_at
- * @property null|integer $price
+ * @property null|integer $value
  * @property array $details
  */
 class Price extends Model

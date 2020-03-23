@@ -6,6 +6,7 @@ use App\Domain\Market\Entities\ItemDTO;
 use App\Domain\Market\Models\Enchantment;
 use App\Domain\Market\Models\Item;
 use App\Domain\Market\Models\Tier;
+use App\Jobs\SaveAr;
 use Exception;
 use Illuminate\Support\Facades\App;
 
@@ -37,29 +38,33 @@ class ItemRepository
      */
     public function create(string $name, array $details, ?Tier $tier, ?Enchantment $enchantment): void
     {
-        $item = $this->itemAr
-            ->newInstance();
-
-        $item->name = $name;
-        $item->details = json_encode($details);
-
-        if (!is_null($tier)) {
-            $item->tier()->associate($tier);
-        }
-
-        if (!is_null($enchantment)) {
-            $item->enchantment()->associate($enchantment);
-        }
+        $item = $this->preCreate(...func_get_args());
 
         $item->save();
     }
 
     /**
+     * Create new Item
+     * @param string $name
+     * @param array $details
+     * @param Tier $tier
+     * @param Enchantment $enchantment
+     */
+    public function createParallel(string $name, array $details, ?Tier $tier, ?Enchantment $enchantment): void
+    {
+        $ar = $this->preCreate(...func_get_args());
+        //$job = App::makeWith(SaveAr::class, compact('ar'));
+        //$job->
+        SaveAr::dispatch($ar);
+    }
+
+    /**
      * Create from definition
      * @param string $definition
+     * @param bool $parallel
      * @throws Exception
      */
-    public function createFromDefinition(string $definition): void
+    public function createFromDefinition(string $definition, bool $parallel = true): void
     {
         //A reference
         // 525: T5_MEAL_OMELETTE_AVALON@1                                        : Avalonian Goose Omelette
@@ -110,6 +115,39 @@ class ItemRepository
             $enchantment = $enchantmentRepo->getByName($parseExpression['enchantment'][0]);
         }
 
-        $this->create($expression, compact('niceName', 'sourceId'), $tier, $enchantment);
+        $saving = 'create';
+
+        if($parallel){
+            $saving = 'createParallel';
+        }
+
+        $this->{$saving}($expression, compact('niceName', 'sourceId'), $tier, $enchantment);
+    }
+
+    /**
+     * Prepare new Item to be  created
+     * @param string $name
+     * @param array $details
+     * @param Tier $tier
+     * @param Enchantment $enchantment
+     * @return Item
+     */
+    protected function preCreate(string $name, array $details, ?Tier $tier, ?Enchantment $enchantment): Item
+    {
+        $item = $this->itemAr
+            ->newInstance();
+
+        $item->name = $name;
+        $item->details = json_encode($details);
+
+        if (!is_null($tier)) {
+            $item->tier()->associate($tier);
+        }
+
+        if (!is_null($enchantment)) {
+            $item->enchantment()->associate($enchantment);
+        }
+
+        return $item;
     }
 }

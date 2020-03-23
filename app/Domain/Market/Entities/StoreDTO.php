@@ -12,4 +12,5 @@ class StoreDTO extends AbstractDTO
 {
     public int $id;
     public string $name;
+    public string $niceName;
 }

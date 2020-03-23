@@ -17,6 +17,6 @@ class PriceDTO extends AbstractDTO
     public int $storeId;
     public int $priceVariationId;
     public Carbon $registeredAt;
-    public ?int $price;
+    public ?int $value;
     public array $details;
 }

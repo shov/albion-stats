@@ -23,7 +23,7 @@ class CreatePricesTable extends Migration
             $table->integer('price_variation_id')->index();
 
             $table->dateTime('registered_at');
-            $table->integer('price')->nullable();
+            $table->integer('value')->nullable();
 
             $table->json('details'); //relative gold price, relative $ price, etc
 
